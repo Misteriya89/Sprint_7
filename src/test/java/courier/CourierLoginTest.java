@@ -27,7 +27,10 @@ public class CourierLoginTest {
         courier.setPassword("1234");
         Response response = clientStep.sendPostRequestApiV1CourierLogin(courier);
         response.then().log().all()
-                .assertThat().body("id", Matchers.notNullValue()).and().statusCode(200);
+                .assertThat()
+                .statusCode(200)
+                .and()
+                .body("id", Matchers.notNullValue());
 
     }
 
@@ -40,8 +43,10 @@ public class CourierLoginTest {
         courier.setPassword("12345678");
         Response response = clientStep.sendPostRequestApiV1CourierLogin(courier);
         response.then().log().all()
-                .assertThat().body("message", Matchers.is("Недостаточно данных для входа")).
-                and().statusCode(400);
+                .assertThat()
+                .statusCode(400)
+                .and()
+                .body("message", Matchers.is("Недостаточно данных для входа"));
 
     }
 
@@ -57,7 +62,10 @@ public class CourierLoginTest {
         courier.setLogin("bestofthebest");
         Response response = clientStep.sendPostRequestApiV1CourierLogin(courier);
         response.then().log().all()
-                .assertThat().statusCode(400).and().body("message", Matchers.is("Недостаточно данных для входа"));
+                .assertThat()
+                .statusCode(400)
+                .and()
+                .body("message", Matchers.is("Недостаточно данных для входа"));
 
     }
 
@@ -71,7 +79,10 @@ public class CourierLoginTest {
         courier.setPassword("1234000");
         Response response = clientStep.sendPostRequestApiV1CourierLogin(courier);
         response.then().log().all()
-                .assertThat().body("message", Matchers.is("Учетная запись не найдена")).and().statusCode(404);
+                .assertThat()
+                .statusCode(404)
+                .and()
+                .body("message", Matchers.is("Учетная запись не найдена"));
 
     }
 
@@ -85,7 +96,10 @@ public class CourierLoginTest {
         courier.setPassword("1234");
         Response response = clientStep.sendPostRequestApiV1CourierLogin(courier);
         response.then().log().all()
-                .assertThat().body("message", Matchers.is("Учетная запись не найдена")).and().statusCode(404);
+                .assertThat()
+                .statusCode(404)
+                .and()
+                .body("message", Matchers.is("Учетная запись не найдена"));
 
     }
 
@@ -99,7 +113,10 @@ public class CourierLoginTest {
         courier.setPassword("vvhhhgvhgyh");
         Response response = clientStep.sendPostRequestApiV1CourierLogin(courier);
         response.then().log().all()
-                .assertThat().body("message", Matchers.is("Учетная запись не найдена")).and().statusCode(404);
+                .assertThat()
+                .statusCode(404)
+                .and()
+                .body("message", Matchers.is("Учетная запись не найдена"));
     }
 
 
